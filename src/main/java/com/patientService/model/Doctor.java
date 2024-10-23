@@ -13,4 +13,11 @@ public class Doctor {
         this.name = name;
         this.specialization = specialization;
     }
+
+    public String getName(){
+        return this.name;
+    }
+    public String getSpecialization(){
+        return this.specialization;
+    }
 }
