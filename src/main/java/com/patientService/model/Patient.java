@@ -41,11 +41,18 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "Patient{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Entity {");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", birthDate=").append(birthDate);
+        sb.append(", severity=").append(severity);
+        sb.append(", primaryDoctor=").append(primaryDoctor);
+        sb.append(", emergencyContact=").append(emergencyContact);
+        sb.append('}');
+        return sb.toString();
     }
+    
 
     public EmergencyContact getEmergencyContact(){
         return this.emergencyContact;
@@ -59,6 +66,19 @@ public class Patient {
         return this.primaryDoctor;
     }
 
+    public String getName() {
+        return name;
+    }
+    
+    public Date getBirthDate() {
+        return birthDate;
+    }
+    
+    public SeverityLevel getSeverity() {
+        return severity;
+    }
+    
+
     public int calculateAge() {
 
         LocalDate localBirthDate = this.birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -70,5 +90,9 @@ public class Patient {
         } else {
             throw new IllegalArgumentException("The birthDate cannot be null");
         }
+    }
+
+    public void setSeverityLevel(SeverityLevel severityLevel){
+        this.severity = severityLevel;
     }
 }

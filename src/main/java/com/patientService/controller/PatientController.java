@@ -37,9 +37,24 @@ public class PatientController {
         return patientService.getAllPatientsBySeverity(SeverityLevel.CRITICAL);
     }
 
+
+    @PostMapping("/{id}/update-severity")
+    public ResponseEntity<Patient> updateSeverity(@PathVariable String id, @RequestBody SeverityLevel severityLevel) {
+        // Use the service to update severity
+        Patient updatedPatient = patientService.updateSeverity(id, severityLevel);
+        
+        // Return the updated patient entity
+        return ResponseEntity.ok(updatedPatient);
+    }
+
     @GetMapping("/{id}")
     public Patient getPatientDetails(@PathVariable String id) {
         return patientService.getPatientDetails(id);
+    }
+
+    @GetMapping()
+    public List<Patient> getPatientDetails() {
+        return patientService.getPatients();
     }
 
     @PostMapping("/save")

@@ -20,4 +20,14 @@ public class Doctor {
     public String getSpecialization(){
         return this.specialization;
     }
+
+    @Override
+    public String toString() {
+        return "Entity {" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", specialization='" + specialization + '\'' +
+                '}';
+    }
+
 }

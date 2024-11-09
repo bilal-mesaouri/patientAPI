@@ -8,4 +8,13 @@ public class EmergencyContact {
         Name=name;
         Email=email;
     }
+
+    @Override
+    public String toString() {
+        return "Entity {" +
+                "Name='" + Name + '\'' +
+                ", Email='" + Email + '\'' +
+                '}';
+    }
+
 }

@@ -20,7 +20,11 @@ public class PatientService {
 
     public Patient getPatientDetails(String patientId) {
         return patientRepository.findById(patientId)
-            .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
+        .orElseThrow(() -> new ResourceNotFoundException("Patient not found"));
+    }
+
+    public List<Patient> getPatients() {
+        return patientRepository.findAll();
     }
 
     public List<Patient> getAllPatientsBySeverity(SeverityLevel severtyLevel){
@@ -54,6 +58,18 @@ public class PatientService {
 
     public String alertEmergencyContact(String patientId){
         return "fetched Data";
+    }
+
+    public Patient updateSeverity(String id, SeverityLevel severityLevel) {
+        // Find the patient by ID
+        Patient patient = patientRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Patient not found with ID: " + id));
+        
+        // Update the severity level
+        patient.setSeverityLevel(severityLevel);
+        
+        // Save and return the updated patient entity
+        return patientRepository.save(patient);
     }
 
 
