@@ -1,6 +1,7 @@
 package com.patientService.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.patientService.enums.SeverityLevel;
+import com.patientService.model.DoctorNote;
 import com.patientService.model.EmergencyContact;
 import com.patientService.model.Patient;
 import com.patientService.service.PatientService;
@@ -95,5 +97,16 @@ public class PatientController {
         }
 
         return updatedJsonResponse;
+    }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/doctor-note/submit")
+    public DoctorNote submitDoctorNote(@RequestBody DoctorNote doctorNote) {
+        // Call the service method to process the note
+        return patientService.submitDoctorNote(doctorNote);
+    }
+    @GetMapping("/doctor-note/{id}")
+    public List<DoctorNote> submitDoctorNote(@PathVariable String id) {
+        // Call the service method to process the note
+        return patientService.getDoctorNoteByPatientId(id);
     }
 }

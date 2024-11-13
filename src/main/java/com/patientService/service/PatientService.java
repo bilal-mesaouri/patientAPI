@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.patientService.enums.SeverityLevel;
 import com.patientService.exception.ResourceNotFoundException;
+import com.patientService.model.DoctorNote;
 import com.patientService.model.EmergencyContact;
 import com.patientService.model.Patient;
+import com.patientService.repository.DoctorNoteRepository;
 import com.patientService.repository.PatientRepository;
 
 @Service
@@ -16,6 +18,8 @@ public class PatientService {
 
     @Autowired
     private PatientRepository patientRepository;
+    @Autowired
+    private DoctorNoteRepository doctorNoteRepository;
 
 
     public Patient getPatientDetails(String patientId) {
@@ -72,6 +76,15 @@ public class PatientService {
         return patientRepository.save(patient);
     }
 
+    public DoctorNote submitDoctorNote(DoctorNote doctorNote) {
+        // Simulating the save process (you can replace this with actual saving logic, e.g., saving to a database)
+        doctorNote.setCreatedAt(new Date());
+        return doctorNoteRepository.save(doctorNote);
+    }
+
+    public List<DoctorNote> getDoctorNoteByPatientId(String id){
+        return doctorNoteRepository.findByPatientId(id);
+    }
 
     
 }

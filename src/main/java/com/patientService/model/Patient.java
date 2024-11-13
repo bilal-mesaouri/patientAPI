@@ -78,6 +78,13 @@ public class Patient {
         return severity;
     }
     
+    public String getId(){
+        return this.id;
+    }
+    
+    public void getId(String id){
+        this.id = id;
+    }
 
     public int calculateAge() {
 
@@ -95,4 +102,6 @@ public class Patient {
     public void setSeverityLevel(SeverityLevel severityLevel){
         this.severity = severityLevel;
     }
+
+
 }
